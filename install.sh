@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Install this statusline into a Claude Code config dir.
-# Usage: ./install.sh
+# Usage (cloned repo):  ./install.sh
+# Usage (one-liner):    curl -fsSL <raw-url>/install.sh | bash
 # Env:   CLAUDE_CONFIG_DIR (default: $HOME/.claude)
 set -euo pipefail
 
+RAW_BASE="https://raw.githubusercontent.com/bmt-code/claude-statusline/main"
 CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "jq not found. Install it first (e.g. apt install jq / brew install jq)." >&2
@@ -13,7 +15,13 @@ if ! command -v jq >/dev/null 2>&1; then
 fi
 
 mkdir -p "$CFG"
-cp "$SRC_DIR/statusline.sh" "$CFG/statusline.sh"
+
+if [ -n "$SRC_DIR" ] && [ -f "$SRC_DIR/statusline.sh" ]; then
+  cp "$SRC_DIR/statusline.sh" "$CFG/statusline.sh"
+else
+  # Running via curl | bash: no local file, pull it straight from GitHub.
+  curl -fsSL "$RAW_BASE/statusline.sh" -o "$CFG/statusline.sh"
+fi
 chmod +x "$CFG/statusline.sh"
 
 SETTINGS="$CFG/settings.json"

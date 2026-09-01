@@ -21,20 +21,28 @@ Segments (most important first — the renderer truncates the tail on narrow ter
 
 ## Install
 
+One-liner (no clone needed):
+
 ```bash
-git clone <this-repo-url>
-cd claude-code-statusline
+curl -fsSL https://raw.githubusercontent.com/bmt-code/claude-statusline/main/install.sh | bash
+```
+
+Or clone first:
+
+```bash
+git clone https://github.com/bmt-code/claude-statusline.git
+cd claude-statusline
 ./install.sh
 ```
 
-This copies `statusline.sh` to `~/.claude/statusline.sh` and merges a `statusLine`
-block into `~/.claude/settings.json` (existing settings are preserved — only the
-`statusLine` key is added/overwritten).
+Either way this copies `statusline.sh` to `~/.claude/statusline.sh` and merges a
+`statusLine` block into `~/.claude/settings.json` (existing settings are
+preserved — only the `statusLine` key is added/overwritten). Requires `jq`.
 
 Set `CLAUDE_CONFIG_DIR` before running if your Claude config lives elsewhere:
 
 ```bash
-CLAUDE_CONFIG_DIR=/path/to/.claude ./install.sh
+CLAUDE_CONFIG_DIR=/path/to/.claude curl -fsSL https://raw.githubusercontent.com/bmt-code/claude-statusline/main/install.sh | bash
 ```
 
 ## Manual install
