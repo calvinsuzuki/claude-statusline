@@ -9,9 +9,26 @@ RAW_BASE="https://raw.githubusercontent.com/calvinsuzuki/claude-statusline/main"
 CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-}")" 2>/dev/null && pwd || true)"
 
+install_jq() {
+  local sudo=""
+  [ "$(id -u)" -ne 0 ] && command -v sudo >/dev/null 2>&1 && sudo="sudo"
+  if command -v brew >/dev/null 2>&1; then brew install jq
+  elif command -v apt-get >/dev/null 2>&1; then $sudo apt-get update -qq && $sudo apt-get install -y jq
+  elif command -v dnf >/dev/null 2>&1; then $sudo dnf install -y jq
+  elif command -v yum >/dev/null 2>&1; then $sudo yum install -y jq
+  elif command -v pacman >/dev/null 2>&1; then $sudo pacman -Sy --noconfirm jq
+  elif command -v apk >/dev/null 2>&1; then $sudo apk add jq
+  elif command -v zypper >/dev/null 2>&1; then $sudo zypper install -y jq
+  else return 1
+  fi
+}
+
 if ! command -v jq >/dev/null 2>&1; then
-  echo "jq not found. Install it first (e.g. apt install jq / brew install jq)." >&2
-  exit 1
+  echo "jq not found, installing..." >&2
+  if ! install_jq || ! command -v jq >/dev/null 2>&1; then
+    echo "Could not auto-install jq. Install it yourself (e.g. apt install jq / brew install jq) and re-run." >&2
+    exit 1
+  fi
 fi
 
 mkdir -p "$CFG"
