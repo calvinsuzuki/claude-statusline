@@ -7,7 +7,7 @@ set -euo pipefail
 
 RAW_BASE="https://raw.githubusercontent.com/calvinsuzuki/claude-statusline/main"
 CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
-SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
+SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-}")" 2>/dev/null && pwd || true)"
 
 if ! command -v jq >/dev/null 2>&1; then
   echo "jq not found. Install it first (e.g. apt install jq / brew install jq)." >&2
