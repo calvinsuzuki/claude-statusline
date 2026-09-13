@@ -24,13 +24,13 @@ Segments (most important first — the renderer truncates the tail on narrow ter
 One-liner (no clone needed):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/bmt-code/claude-statusline/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/calvinsuzuki/claude-statusline/main/install.sh | bash
 ```
 
 Or clone first:
 
 ```bash
-git clone https://github.com/bmt-code/claude-statusline.git
+git clone https://github.com/calvinsuzuki/claude-statusline.git
 cd claude-statusline
 ./install.sh
 ```
@@ -42,7 +42,7 @@ preserved — only the `statusLine` key is added/overwritten). Requires `jq`.
 Set `CLAUDE_CONFIG_DIR` before running if your Claude config lives elsewhere:
 
 ```bash
-CLAUDE_CONFIG_DIR=/path/to/.claude curl -fsSL https://raw.githubusercontent.com/bmt-code/claude-statusline/main/install.sh | bash
+CLAUDE_CONFIG_DIR=/path/to/.claude curl -fsSL https://raw.githubusercontent.com/calvinsuzuki/claude-statusline/main/install.sh | bash
 ```
 
 ## Manual install

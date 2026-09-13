@@ -5,7 +5,7 @@
 # Env:   CLAUDE_CONFIG_DIR (default: $HOME/.claude)
 set -euo pipefail
 
-RAW_BASE="https://raw.githubusercontent.com/bmt-code/claude-statusline/main"
+RAW_BASE="https://raw.githubusercontent.com/calvinsuzuki/claude-statusline/main"
 CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
 
