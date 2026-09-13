@@ -37,7 +37,9 @@ cd claude-statusline
 
 Either way this copies `statusline.sh` to `~/.claude/statusline.sh` and merges a
 `statusLine` block into `~/.claude/settings.json` (existing settings are
-preserved — only the `statusLine` key is added/overwritten). Requires `jq`.
+preserved — only the `statusLine` key is added/overwritten). Auto-installs `jq`
+via apt/dnf/yum/pacman/apk/zypper/brew if missing (uses `sudo` when not root and
+one is available).
 
 Set `CLAUDE_CONFIG_DIR` before running if your Claude config lives elsewhere:
 
