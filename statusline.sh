@@ -61,7 +61,7 @@ mapfile -t F < <(printf '%s' "$input" | jq -r '[
   (.cost.total_duration_ms // 0 | floor),
   (.cost.total_lines_added // 0),
   (.cost.total_lines_removed // 0)
-] | map(tostring) | .[]' 2>/dev/null)
+] | map(tostring) | .[]' 2>/dev/null | tr -d '\r') # Windows jq ends lines with CRLF
 
 # jq missing or payload malformed: stay silent rather than print garbage.
 (( ${#F[@]} < 11 )) && exit 0
